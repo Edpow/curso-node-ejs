@@ -42,5 +42,9 @@ app.get("/about", function(req,res){
     res.render("pages/about");
 })
 
+app.get("/sinapi/:code", function(req, res){
+    res.send(req.params)
+})
+
 app.listen(8080);
 console.log('Rodando...');
