@@ -43,7 +43,15 @@ app.get("/about", function(req,res){
 })
 
 app.get("/sinapi/:code", function(req, res){
-    res.send(req.params)
+
+    const composition = {
+        code: req.params.code,
+        description: 'teste',
+        unitPrice: 10.20,
+        unit: 'm'
+    }
+
+    res.send(composition)
 })
 
 app.listen(8080);
