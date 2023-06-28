@@ -1,7 +1,18 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient({ log: ['query'] })
+
 app.set("view engine","ejs");
+
+async function findManySinapiCode(code){
+    const composition = await prisma.sinapi.findUnique({
+        where: { code: parseInt(code) },
+      })
+      console.log(composition)
+      return composition
+}
 
 app.get("/", function(req,res){
     const items =[
@@ -43,16 +54,14 @@ app.get("/about", function(req,res){
 })
 
 app.get("/sinapi/:code", function(req, res){
-
-    const composition = {
-        code: req.params.code,
-        description: 'teste',
-        unitPrice: 10.20,
-        unit: 'm'
-    }
-
-    res.send(composition)
+    console.log('Requisition code:',req.params.code)
+    findManySinapiCode(req.params.code).then(composition =>{
+        console.log('Founded composition',composition)
+        res.send(composition)
+    })
 })
+
+
 
 app.listen(8080);
 console.log('Rodando...');
