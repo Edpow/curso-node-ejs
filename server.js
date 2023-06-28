@@ -64,4 +64,4 @@ app.get("/sinapi/:code", function(req, res){
 
 
 app.listen(8080);
-console.log('Rodando...');
+console.log('Rodando.....');
