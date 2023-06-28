@@ -54,7 +54,7 @@ app.get("/about", function(req,res){
 })
 
 app.get("/sinapi/:code", function(req, res){
-    console.log('Requisition code:',req.params.code)
+    console.log('Requisition code:  ',req.params.code)
     findManySinapiCode(req.params.code).then(composition =>{
         console.log('Founded composition',composition)
         res.send(composition)
